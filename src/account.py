@@ -9,3 +9,8 @@ def get_accounts(filename):
 
 def login(user, pw, accounts):
     return accounts.get(user) == pw
+
+
+def register(user, pw, filename):
+    with open(filename, "a") as f:
+        f.write(f"{user},{pw}\n")

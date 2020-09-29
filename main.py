@@ -1,13 +1,15 @@
 from src.prompts import master
-from src.account import get_accounts, login
+from src.account import get_accounts, login, register
 from src.shop import start_shopping
 
-accounts = get_accounts('data/accounts.csv')
-
 while True:
+    filename = 'data/accounts.csv'
+    accounts = get_accounts(filename)
     response = input(master)
     if response == 'r':
-        pass
+        user = input('username: ')
+        pw = input('password: ')
+        register(user, pw, filename)
     elif response == 'l':
         user = input('username: ')
         pw = input('password: ')
