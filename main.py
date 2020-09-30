@@ -1,8 +1,10 @@
 from src.prompts import master
 from src.account import get_accounts, login, register
 from src.shop import start_shopping
+import os
 
 while True:
+    os.system('clear')
     filename = 'data/accounts.csv'
     accounts = get_accounts(filename)
     response = input(master)
