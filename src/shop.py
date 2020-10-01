@@ -51,8 +51,18 @@ def go_shopping(user):
 
 
 def checkout(user):
-    with open('data/transactions.csv', 'a') as f:
+    filename = 'data/transactions.csv'
+
+    try:
+        f = open(filename)
+        tid = f.readlines()[-1].strip().split(',')[0]
+        tid = int(tid) + 1
+        f.close()
+    except IndexError:
+        tid = 1
+
+    with open(filename, 'a') as f:
         for selection in carts[user]:
-            transaction = f"{user},{selection.name},{selection.price},{selection.amount}"
+            transaction = f"{tid},{user},{selection.name},{selection.price},{selection.amount}"
             f.write(f"{transaction}\n")
     carts[user].empty()
